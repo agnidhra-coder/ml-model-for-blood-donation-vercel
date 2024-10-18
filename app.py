@@ -56,10 +56,10 @@ def home():
 @app.route('/predict', methods=['POST'])
 def predict():
     # Get parameters from the request
-    recency = float(request.args.get('recency', 1))  # Default to 1 if not provided
-    frequency = float(request.args.get('frequency', 4))  # Default to 4 if not provided
-    monetary = float(request.args.get('monetary', 3))  # Default to 3 if not provided
-    time = float(request.args.get('time', 4))  # Default to 4 if not provided
+    recency = request.form.get('recency', type=int)
+    frequency = request.form.get('frequency', type=int)
+    monetary = request.form.get('monetary', type=float)
+    time = request.form.get('time', type=int)
 
     prob = predict_donation_probability(recency, frequency, monetary, time)
 
